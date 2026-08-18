@@ -5,6 +5,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
 
 TOKEN = os.environ.get("BOT_TOKEN")
+print("DEBUG ENV KEYS:", list(os.environ.keys()))
 print("DEBUG BOT_TOKEN:", "Є" if TOKEN else "НЕМАЄ")
 
 logging.basicConfig(

@@ -52,7 +52,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard = [
             [InlineKeyboardButton("📋 Чек-лист", callback_data="checklist")],
             [InlineKeyboardButton("🗣 Скрипт офіціанта", callback_data="waiter_script")],
-            [InlineKeyboardButton("🪑 Розстановка столів", callback_data="table_layout")],
             [InlineKeyboardButton("⬅️ Назад", callback_data="back")],
         ]
 

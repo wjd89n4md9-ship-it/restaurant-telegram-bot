@@ -176,14 +176,14 @@ def main():
             "Не знайдено BOT_TOKEN."
         )
 
-    if not KOYEB_DOMAIN:
-        raise ValueError(
-            "Не знайдено KOYEB_PUBLIC_DOMAIN."
-        )
-
-    webhook_url = (
-        f"https://{KOYEB_DOMAIN}/telegram"
+   if not RENDER_DOMAIN:
+    raise ValueError(
+        "Не знайдено RENDER_EXTERNAL_HOSTNAME."
     )
+
+webhook_url = (
+    f"https://{RENDER_DOMAIN}/telegram"
+)
 
     application = (
         Application.builder()

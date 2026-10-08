@@ -46,30 +46,10 @@ async def button_handler(update: Update, context):
 
     if query.data == "menu":
         keyboard = [
-            [
-                InlineKeyboardButton(
-                    "🍸 Коктейлі",
-                    callback_data="cocktails",
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    "🍽 Кухня",
-                    callback_data="kitchen",
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    "🍺 Бар",
-                    callback_data="bar",
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    "⬅️ Назад",
-                    callback_data="back",
-                )
-            ],
+            [InlineKeyboardButton("🍸 Коктейлі", callback_data="cocktails")],
+            [InlineKeyboardButton("🍽 Кухня", callback_data="kitchen")],
+            [InlineKeyboardButton("🍺 Бар", callback_data="bar")],
+            [InlineKeyboardButton("⬅️ Назад", callback_data="back")],
         ]
 
         await query.edit_message_text(
@@ -79,24 +59,14 @@ async def button_handler(update: Update, context):
 
     elif query.data == "standards":
         keyboard = [
-            [
-                InlineKeyboardButton(
-                    "📋 Чек-лист",
-                    callback_data="checklist",
-                )
-            ],
+            [InlineKeyboardButton("📋 Чек-лист", callback_data="checklist")],
             [
                 InlineKeyboardButton(
                     "🗣 Скрипт офіціанта",
                     callback_data="waiter_script",
                 )
             ],
-            [
-                InlineKeyboardButton(
-                    "⬅️ Назад",
-                    callback_data="back",
-                )
-            ],
+            [InlineKeyboardButton("⬅️ Назад", callback_data="back")],
         ]
 
         await query.edit_message_text(
@@ -115,7 +85,6 @@ async def button_handler(update: Update, context):
         "waiter_script",
         "table_scheme",
     ]:
-
         files = {
             "cocktails": "files/menu/cocktails.pdf",
             "kitchen": "files/menu/kitchen.pdf",
@@ -128,33 +97,21 @@ async def button_handler(update: Update, context):
         file_path = files[query.data]
 
         if not os.path.exists(file_path):
-            await query.message.reply_text(
-                "❌ Файл не знайдено."
-            )
+            await query.message.reply_text("❌ Файл не знайдено.")
             return
 
         if os.path.getsize(file_path) == 0:
-            await query.message.reply_text(
-                "❌ Файл порожній."
-            )
+            await query.message.reply_text("❌ Файл порожній.")
             return
 
-        await query.message.reply_document(
-            document=file_path
-        )
+        await query.message.reply_document(document=file_path)
 
 
 async def show_main_menu(query):
     keyboard = [
         [
-            InlineKeyboardButton(
-                "🍸 Меню",
-                callback_data="menu",
-            ),
-            InlineKeyboardButton(
-                "📋 Стандарти",
-                callback_data="standards",
-            ),
+            InlineKeyboardButton("🍸 Меню", callback_data="menu"),
+            InlineKeyboardButton("📋 Стандарти", callback_data="standards"),
         ],
         [
             InlineKeyboardButton(
@@ -172,18 +129,14 @@ async def show_main_menu(query):
 
 def main():
     if not TOKEN:
+        raise ValueError("Не знайдено BOT_TOKEN.")
+
+    if not RENDER_DOMAIN:
         raise ValueError(
-            "Не знайдено BOT_TOKEN."
+            "Не знайдено RENDER_EXTERNAL_HOSTNAME."
         )
 
-   if not RENDER_DOMAIN:
-    raise ValueError(
-        "Не знайдено RENDER_EXTERNAL_HOSTNAME."
-    )
-
-webhook_url = (
-    f"https://{RENDER_DOMAIN}/telegram"
-)
+    webhook_url = f"https://{RENDER_DOMAIN}/telegram"
 
     application = (
         Application.builder()

@@ -10,7 +10,7 @@ from telegram.ext import (
 
 TOKEN = os.environ.get("BOT_TOKEN")
 PORT = int(os.environ.get("PORT", "8000"))
-KOYEB_DOMAIN = os.environ.get("KOYEB_PUBLIC_DOMAIN")
+RENDER_DOMAIN = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
